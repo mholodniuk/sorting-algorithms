@@ -27,7 +27,8 @@ public class Movie implements Comparable<Movie> {
             csvReader = new CSVReader(fileReader);
             records = csvReader.readNext(); // reads first line - ",movie,rating"
             while((records = csvReader.readNext()) != null) {
-                movies.add(new Movie(records[1], Double.parseDouble(records[2])));
+                if(!records[1].isEmpty() && !records[2].isEmpty())
+                    movies.add(new Movie(records[1], Double.parseDouble(records[2])));
             }
         }
         catch(Exception e) {
@@ -89,5 +90,12 @@ public class Movie implements Comparable<Movie> {
         if (Double.doubleToLongBits(rating) != Double.doubleToLongBits(other.rating))
             return false;
         return true;
+    }
+
+    public static void main(String[] args) {
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_10.csv");
+        for(Movie movie: movies) {
+            System.out.println(movie.toString());
+        }
     }
 }
