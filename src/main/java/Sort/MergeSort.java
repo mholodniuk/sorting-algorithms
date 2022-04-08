@@ -11,7 +11,7 @@ public class MergeSort {
         mergeSort(tab, tab.size());
     }
 
-    public static <T extends Comparable<T>> void mergeSort(ArrayList<T> tab, int n) {
+    private static <T extends Comparable<T>> void mergeSort(ArrayList<T> tab, int n) {
         if(n < 2) 
             return;
         int mid = n / 2;
@@ -48,7 +48,7 @@ public class MergeSort {
     }
 
     public static void main(String[] args) {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_1000.csv");
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_100000.csv");
         Timer timer = new Timer(Timer.Precision.MILLI);
 
         timer.start();

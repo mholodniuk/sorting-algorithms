@@ -2,8 +2,6 @@ package Structures;
 
 import java.util.ArrayList;
 import java.io.FileReader;
-import java.io.IOException;
-
 import com.opencsv.CSVReader;
 
 
@@ -33,15 +31,6 @@ public class Movie implements Comparable<Movie> {
         }
         catch(Exception e) {
             e.printStackTrace();
-        }
-        finally 
-        {
-            try {
-                fileReader.close();
-                csvReader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
         return movies;
     }

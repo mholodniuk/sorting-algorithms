@@ -32,7 +32,7 @@ public class MovieTest {
 
     @Test
     public void testReadFromFile() {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_short.csv");
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_10.csv");
         
         Movie other = new Movie("Special OPS (2020– )", 7.0);
         assertTrue(movies.get(2).equals(other));
