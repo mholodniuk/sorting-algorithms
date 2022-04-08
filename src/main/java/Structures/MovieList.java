@@ -47,6 +47,10 @@ public class MovieList {
         
     }
 
+    public int getLength() {
+        return movies.size();
+    }
+
     public Movie at(int idx) {
         return movies.get(idx);
     }

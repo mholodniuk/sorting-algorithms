@@ -2,13 +2,12 @@ import Structures.Movie;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 
 import java.util.Arrays;
 
-public class MovieTest 
-{
+public class MovieTest {
+
     @Test
     public void comparisonArray() {
         Movie m1 = new Movie("Hangover", 8.0);
@@ -28,6 +27,5 @@ public class MovieTest
 
         int comparison = m1.compareTo(m2);
         assertTrue(comparison > 0);
-
     }
 }

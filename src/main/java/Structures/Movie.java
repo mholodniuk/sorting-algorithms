@@ -34,8 +34,7 @@ public class Movie implements Comparable<Movie> {
     @Override
     public String toString() {
         return "Name: " + this.name +
-               "\nRating: " + this.rating +
-               "\n"; 
+               "\nRating: " + this.rating;
     }
 
     @Override
