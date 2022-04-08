@@ -4,6 +4,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MovieTest {
@@ -27,5 +28,13 @@ public class MovieTest {
 
         int comparison = m1.compareTo(m2);
         assertTrue(comparison > 0);
+    }
+
+    @Test
+    public void testReadFromFile() {
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/java/resources/data_short.csv");
+        
+        Movie other = new Movie("Special OPS (2020– )", 7.0);
+        assertTrue(movies.get(2).equals(other));
     }
 }

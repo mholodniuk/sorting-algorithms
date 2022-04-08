@@ -1,5 +1,11 @@
 package Structures;
 
+import java.util.ArrayList;
+import java.io.FileReader;
+import java.io.IOException;
+
+import com.opencsv.CSVReader;
+
 
 public class Movie implements Comparable<Movie> {
     private String name;
@@ -8,6 +14,35 @@ public class Movie implements Comparable<Movie> {
     public Movie(String name, double rating) {
         this.name = name;
         this.rating = rating;
+    }
+
+    public static ArrayList<Movie> readMoviesFromFile(String filename) {
+        FileReader fileReader = null;
+        CSVReader csvReader = null;
+        ArrayList<Movie> movies = new ArrayList<>();
+        String[] records;
+
+        try {
+            fileReader = new FileReader(filename);
+            csvReader = new CSVReader(fileReader);
+            records = csvReader.readNext(); // reads first line - ",movie,rating"
+            while((records = csvReader.readNext()) != null) {
+                movies.add(new Movie(records[1], Double.parseDouble(records[2])));
+            }
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        finally 
+        {
+            try {
+                fileReader.close();
+                csvReader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return movies;
     }
 
     @Override

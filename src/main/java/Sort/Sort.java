@@ -1,7 +1,7 @@
 package Sort;
 
-import Structures.MovieList;
+import java.util.ArrayList;
 
 public interface Sort {
-    public void sort(MovieList movies);
+    public <T extends Comparable<T>> void sort(ArrayList<T> movies);
 }

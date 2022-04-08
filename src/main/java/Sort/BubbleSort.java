@@ -1,29 +1,29 @@
 package Sort;
 
-import Structures.MovieList;
+import java.util.ArrayList;
+import java.util.Collections;
 
-public class BubbleSort implements Sort {
+import Structures.Movie;
 
-    public BubbleSort() {}
-
-    @Override
-    public void sort(MovieList movies) {
-        int length = movies.getLength();
+public class BubbleSort {
+    
+    public static <T extends Comparable<T>> void sort(ArrayList<T> movies) {
+        int length = movies.size();
         for(int i = 0; i < length-1; ++i)
             for(int j = 0; j < length-i-1; ++j)
-                if(movies.at(j).compareTo(movies.at(j + 1)) > 0)
-                    movies.swap(j, j + 1);
+                if(movies.get(j).compareTo(movies.get(j + 1)) > 0)
+                    Collections.swap(movies, j, j + 1);
     }
 
     public static void main(String[] args) {
-        MovieList movies = new MovieList();
-        BubbleSort sort = new BubbleSort();
-        movies.readFromFile("src/main/java/resources/data_short.csv");
-        movies.print();
-
-        System.out.println("\n\nPosortowane:");
-
-        sort.sort(movies);
-        movies.print();
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/java/resources/data_short.csv");
+        for(Movie movie: movies) {
+            System.out.println(movie.toString());
+        }
+        BubbleSort.sort(movies);
+        System.out.println("\nPosortowanie:");
+        for(Movie movie: movies) {
+            System.out.println(movie.toString());
+        }
     }
 }
