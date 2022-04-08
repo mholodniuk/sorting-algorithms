@@ -1,6 +1,7 @@
 package Structures;
 
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -25,6 +26,8 @@ public class MovieList {
         try {
             fileReader = new FileReader(filename);
             csvReader = new CSVReader(fileReader);
+            // reads first line - ",movie,rating"
+            records = csvReader.readNext();
             while((records = csvReader.readNext()) != null) {
                 movies.add(new Movie(records[1], Double.parseDouble(records[2])));
             }
@@ -32,6 +35,16 @@ public class MovieList {
         catch(Exception e) {
             e.printStackTrace();
         }
+        finally 
+        {
+            try {
+                fileReader.close();
+                csvReader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        
     }
 
     public Movie at(int idx) {
@@ -51,7 +64,6 @@ public class MovieList {
             System.out.println(movie.toString());
         }
     }
-
     public static void main(String[] args) {
         MovieList movies = new MovieList();
         movies.readFromFile("src/main/java/resources/data_short.csv");
