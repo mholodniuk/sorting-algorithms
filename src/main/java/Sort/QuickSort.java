@@ -21,7 +21,7 @@ public class QuickSort {
         }
     }
 
-    private static <T extends Comparable<T>> int partition(ArrayList<T> tab, int begin, int end) {
+    public static <T extends Comparable<T>> int partition(ArrayList<T> tab, int begin, int end) {
         T pivot = tab.get(end);
         int i = begin - 1;
 
