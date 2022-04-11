@@ -1,7 +1,6 @@
 package Sort;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 import Benchmark.Timer;
@@ -14,58 +13,50 @@ public class HeapSort {
     }
 
     public static <T extends Comparable<T>> void heapSort(ArrayList<T> tab) {
-        makeHeap(tab);
-        int sizeOfHeap = tab.size() - 1;
-        for(int i = sizeOfHeap; i > 0; i--) {
+        if(tab.size() < 1) return;
+        int sizeOfHeap = tab.size();
+        for(int i = sizeOfHeap/2 - 1; i >= 0; i--) {
+            heapify(tab, i, sizeOfHeap);
+        }
+        for(int i = sizeOfHeap - 1; i > 0; i--) {
             Collections.swap(tab, 0, i);
-            sizeOfHeap--;
-            heapify(tab, 0, sizeOfHeap);
+            heapify(tab, 0, i);
         }
     }
 
     public static <T extends Comparable<T>> void heapify(ArrayList<T> tab, int i, int size) {
-        int right = 2 * i + 2;
         int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        int largest = i;
         if(left > size || right > size) 
             return;
 
         T leftElement = tab.get(left);
         T rightElement = tab.get(right);
-        int max;
 
-        if(left <= size && leftElement.compareTo(tab.get(i)) > 0)
-            max = Arrays.asList().indexOf(leftElement);
-        else
-            max = Arrays.asList().indexOf(tab.get(i));
+        if(left < size && leftElement.compareTo(tab.get(largest)) > 0)
+            largest = left;
 
-        if(right <= size && rightElement.compareTo(tab.get(max)) > 0)
-            max = Arrays.asList().indexOf(rightElement);
+        if(right < size && rightElement.compareTo(tab.get(largest)) > 0)
+            largest = right;
 
-        if(tab.get(max).compareTo(tab.get(i)) != 0) {
-            Collections.swap(tab, i, max);
-            heapify(tab, max, size);
+        if(largest != i) {
+            Collections.swap(tab, i, largest);
+            heapify(tab, largest, size);
         }
-    }
-
-    public static <T extends Comparable<T>> void makeHeap(ArrayList<T> tab) {
-        for(int i = tab.size()/2; i >= 0; i--)
-            heapify(tab, i, tab.size() - 1);
     }
 
     public static void main(String[] args) {
         ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_10.csv");
-        Timer timer = new Timer(Timer.Precision.NANO);
-        HeapSort.makeHeap(movies);
-        for(Movie movie: movies) {
-            System.out.println(movie.toString());
-        }
+        Timer timer = new Timer(Timer.Precision.MILLI);
         timer.start();
-        //HeapSort.sort(movies);
+        HeapSort.sort(movies);
         long duration = timer.stop();
+        System.out.println("\n\nPosortowane:");
         for(Movie movie: movies) {
             System.out.println(movie.toString());
         }
-        System.out.printf("HeapSort took: %d nanoseconds", duration);
+        System.out.printf("HeapSort took: %d milliseconds", duration);
     }
 
 }

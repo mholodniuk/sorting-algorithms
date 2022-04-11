@@ -48,7 +48,7 @@ public class MergeSort {
     }
 
     public static void main(String[] args) {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_100000.csv");
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_10.csv");
         Timer timer = new Timer(Timer.Precision.MILLI);
 
         timer.start();
