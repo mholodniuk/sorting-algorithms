@@ -2,7 +2,11 @@ import Structures.Movie;
 import Sort.QuickSort;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
+
+import Benchmark.OrderCheck;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,5 +42,12 @@ public class QuickSortTest {
 
         QuickSort.sort(mixed);
         assertArrayEquals(expected.toArray(), mixed.toArray());
+    }
+
+    @Test
+    public void sortingTest() {
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_1000.csv");
+        QuickSort.sort(movies);
+        assertTrue(OrderCheck.isInCorrectOrder(movies));
     }
 }

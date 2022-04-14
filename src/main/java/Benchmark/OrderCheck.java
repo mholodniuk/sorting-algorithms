@@ -18,14 +18,12 @@ public class OrderCheck {
 
     public static void main(String[] args) {
         ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_1000.csv");
-
         BubbleSort.sort(movies);
-        boolean git = OrderCheck.isInCorrectOrder(movies);
+        boolean good = OrderCheck.isInCorrectOrder(movies);
 
-        if(git)
+        if(good)
             System.out.println("git");
         else
             System.out.println("nie git");
-
     }
 }

@@ -12,8 +12,9 @@ public class HeapSort {
         heapSort(tab);
     }
 
-    public static <T extends Comparable<T>> void heapSort(ArrayList<T> tab) {
-        if(tab.size() < 1) return;
+    private static <T extends Comparable<T>> void heapSort(ArrayList<T> tab) {
+        if(tab.size() < 1) 
+            return;
         int sizeOfHeap = tab.size();
         for(int i = sizeOfHeap/2 - 1; i >= 0; i--) {
             heapify(tab, i, sizeOfHeap);
@@ -24,7 +25,7 @@ public class HeapSort {
         }
     }
 
-    public static <T extends Comparable<T>> void heapify(ArrayList<T> tab, int i, int size) {
+    private static <T extends Comparable<T>> void heapify(ArrayList<T> tab, int i, int size) {
         int left = 2 * i + 1;
         int right = 2 * i + 2;
         int largest = i;
@@ -48,7 +49,7 @@ public class HeapSort {
 
     public static void main(String[] args) {
         ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_10.csv");
-        Timer timer = new Timer(Timer.Precision.MILLI);
+        Timer timer = new Timer(Timer.Precision.MILLISECONDS);
         timer.start();
         HeapSort.sort(movies);
         long duration = timer.stop();

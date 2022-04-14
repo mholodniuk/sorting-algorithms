@@ -49,7 +49,7 @@ public class MergeSort {
 
     public static void main(String[] args) {
         ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_10.csv");
-        Timer timer = new Timer(Timer.Precision.MILLI);
+        Timer timer = new Timer(Timer.Precision.MILLISECONDS);
 
         timer.start();
         MergeSort.sort(movies);

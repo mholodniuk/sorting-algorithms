@@ -1,7 +1,10 @@
 import Structures.Movie;
 import Sort.MergeSort;
+import Benchmark.OrderCheck;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -38,5 +41,12 @@ public class MergeSortTest {
 
         MergeSort.sort(mixed);
         assertArrayEquals(expected.toArray(), mixed.toArray());
+    }
+
+    @Test
+    public void sortingTest() {
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_1000.csv");
+        MergeSort.sort(movies);
+        assertTrue(OrderCheck.isInCorrectOrder(movies));
     }
 }

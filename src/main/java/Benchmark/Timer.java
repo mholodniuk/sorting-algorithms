@@ -2,8 +2,8 @@ package Benchmark;
 
 public class Timer {
     public enum Precision {
-        MILLI,
-        NANO
+        MILLISECONDS,
+        NANOSECONDS
     }
     private long start = 0;
     private final Precision precision;
@@ -13,17 +13,18 @@ public class Timer {
     }
 
     public void start() {
-        if(precision == Precision.MILLI)
+        this.start = 0;
+        if(precision == Precision.MILLISECONDS)
             start = System.currentTimeMillis();
-        if(precision == Precision.NANO)
-        start = System.nanoTime();
+        if(precision == Precision.NANOSECONDS)
+            start = System.nanoTime();
     }
 
     public long stop() {
         long finish = 0;
-        if(precision == Precision.MILLI)
+        if(precision == Precision.MILLISECONDS)
             finish = System.currentTimeMillis();
-        if(precision == Precision.NANO)
+        if(precision == Precision.NANOSECONDS)
             finish = System.nanoTime();
         return finish - start;
     }

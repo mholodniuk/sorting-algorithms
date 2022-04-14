@@ -18,7 +18,7 @@ public class BubbleSort {
 
     public static void main(String[] args) {
         ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_1000.csv");
-        Timer timer = new Timer(Timer.Precision.MILLI);
+        Timer timer = new Timer(Timer.Precision.MILLISECONDS);
 
         timer.start();
         BubbleSort.sort(movies);

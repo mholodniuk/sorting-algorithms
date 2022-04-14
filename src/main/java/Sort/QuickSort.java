@@ -21,7 +21,7 @@ public class QuickSort {
         }
     }
 
-    public static <T extends Comparable<T>> int partition(ArrayList<T> tab, int begin, int end) {
+    private static <T extends Comparable<T>> int partition(ArrayList<T> tab, int begin, int end) {
         T pivot = tab.get(end);
         int i = begin - 1;
 
@@ -38,7 +38,7 @@ public class QuickSort {
 
     public static void main(String[] args) {
         ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_100000.csv");
-        Timer timer = new Timer(Timer.Precision.MILLI);
+        Timer timer = new Timer(Timer.Precision.MILLISECONDS);
 
         timer.start();
         MergeSort.sort(movies);

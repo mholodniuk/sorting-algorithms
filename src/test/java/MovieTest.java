@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class MovieTest {
 
     @Test
-    public void comparisonArray() {
+    public void compareArrayTest() {
         Movie m1 = new Movie("Hangover", 8.0);
         Movie m2 = new Movie("Piku", 5.0);
         Movie m3 = new Movie("Spider-Man", 9.0);
@@ -22,7 +22,7 @@ public class MovieTest {
     }
 
     @Test
-    public void comparisonSingle() {
+    public void compareToTest() {
         Movie m1 = new Movie("Hangover", 8.0);
         Movie m2 = new Movie("Piku", 5.0);
 
