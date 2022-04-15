@@ -8,8 +8,14 @@ public class IntroSort {
         introSort(tab, tab.size());
     }
 
-    public static <T extends Comparable<T>> void introSort(ArrayList<T> tab, int n) {
+    private static <T extends Comparable<T>> void introSort(ArrayList<T> tab, int n) {
         if(n <= 0) return;
-        
+        medianOfThree(tab.get(0), tab.get(1), tab.get(2));
     }
+
+    private static <T extends Comparable<T>> T medianOfThree(T a, T b, T c) {
+        return a;
+    }
+
+
 }

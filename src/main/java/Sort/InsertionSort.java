@@ -1,19 +1,23 @@
 package Sort;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import Structures.Movie;
 import Benchmark.Timer;
 
-public class BubbleSort {
+public class InsertionSort {
     
     public static <T extends Comparable<T>> void sort(ArrayList<T> tab) {
         int length = tab.size();
-        for(int i = 0; i < length-1; ++i)
-            for(int j = 0; j < length-i-1; ++j)
-                if(tab.get(j).compareTo(tab.get(j + 1)) > 0)
-                    Collections.swap(tab, j, j + 1);
+        for(int i = 1; i < length; i++) {
+            T key = tab.get(i);
+            int j = i - 1;
+            while(j >= 0 && tab.get(j).compareTo(key) > 0) {
+                tab.set(j + 1, tab.get(j));
+                j = j - 1;
+            }
+            tab.set(j + 1, key);
+        }
     }
 
     public static void main(String[] args) {
@@ -21,7 +25,7 @@ public class BubbleSort {
         Timer timer = new Timer(Timer.Precision.MILLISECONDS);
 
         timer.start();
-        BubbleSort.sort(movies);
+        InsertionSort.sort(movies);
         long duration = timer.stop();
 
         System.out.printf("BubbleSort took: %d milliseconds", duration);

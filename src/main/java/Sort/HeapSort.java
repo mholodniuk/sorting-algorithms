@@ -48,15 +48,13 @@ public class HeapSort {
     }
 
     public static void main(String[] args) {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_10.csv");
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_10000.csv");
         Timer timer = new Timer(Timer.Precision.MILLISECONDS);
+
         timer.start();
         HeapSort.sort(movies);
         long duration = timer.stop();
-        System.out.println("\n\nPosortowane:");
-        for(Movie movie: movies) {
-            System.out.println(movie.toString());
-        }
+        
         System.out.printf("HeapSort took: %d milliseconds", duration);
     }
 
