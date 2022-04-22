@@ -28,6 +28,6 @@ public class InsertionSort {
         InsertionSort.sort(movies);
         long duration = timer.stop();
 
-        System.out.printf("BubbleSort took: %d milliseconds", duration);
+        System.out.printf("InsertionSort took: %d milliseconds", duration);
     }
 }
