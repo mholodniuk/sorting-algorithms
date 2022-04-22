@@ -2,12 +2,12 @@
 
 ```
 ├───resources
-├───src
-│   ├───main
-│   │   └───java
-│   │       ├───Benchmark        
-│   │       ├───Sort
-│   │       └───Structures       
-│   └───test
-│       └───java
+└───src
+    ├───main
+    │   └───java
+    │       ├───Benchmark        
+    │       ├───Sort
+    │       └───Structures       
+    └───test
+        └───java
 ```
