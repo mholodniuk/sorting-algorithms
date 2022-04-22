@@ -10,7 +10,7 @@ public class HeapSort {
     public static final String NAME = "heapsort";
     
     public static <T extends Comparable<T>> void sort(ArrayList<T> tab) {
-        heapSort(tab);
+        heapSort(tab); 
     }
 
     private static <T extends Comparable<T>> void heapSort(ArrayList<T> tab) {
@@ -49,14 +49,15 @@ public class HeapSort {
     }
 
     public static void main(String[] args) {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_10000.csv");
-        Timer timer = new Timer(Timer.Precision.MILLISECONDS);
+        for(int i = 0; i < 10; i++) {
+            ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_1000.csv");
+            Timer timer = new Timer(Timer.Precision.MILLISECONDS);
 
-        timer.start();
-        HeapSort.sort(movies);
-        long duration = timer.stop();
-        
-        System.out.printf("HeapSort took: %d milliseconds", duration);
+            timer.start();
+            HeapSort.sort(movies);
+            long duration = timer.stop();
+
+            System.out.printf(i + ". Heapsort took: %d milliseconds\n", duration);
+        }
     }
-
 }

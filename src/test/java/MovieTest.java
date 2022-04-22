@@ -30,9 +30,10 @@ public class MovieTest {
         assertTrue(comparison > 0);
     }
 
+    // fails with maven (mvn install), but passes while testing as usual
     @Test
     public void testReadFromFile() {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_10.csv");
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data.csv");
         
         Movie other = new Movie("Special OPS (2020– )", 7.0);
         assertTrue(movies.get(2).equals(other));

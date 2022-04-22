@@ -5,11 +5,12 @@ public class Timer {
         MILLISECONDS,
         NANOSECONDS
     }
-    private long start = 0;
+    private long start;
     private final Precision precision;
 
     public Timer(Precision precision) {
         this.precision = precision;
+        this.start = 0;
     }
 
     public void start() {
