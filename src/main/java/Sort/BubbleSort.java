@@ -7,7 +7,8 @@ import Structures.Movie;
 import Benchmark.Timer;
 
 public class BubbleSort {
-    
+    public static final String NAME = "bubblesort";
+
     public static <T extends Comparable<T>> void sort(ArrayList<T> tab) {
         int length = tab.size();
         for(int i = 0; i < length-1; ++i)

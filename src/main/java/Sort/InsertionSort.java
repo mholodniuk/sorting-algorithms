@@ -6,6 +6,7 @@ import Structures.Movie;
 import Benchmark.Timer;
 
 public class InsertionSort {
+    public static final String NAME = "insertionsort";
     
     public static <T extends Comparable<T>> void sort(ArrayList<T> tab) {
         int length = tab.size();

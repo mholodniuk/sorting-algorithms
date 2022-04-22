@@ -7,6 +7,7 @@ import Benchmark.Timer;
 import Structures.Movie;
 
 public class HeapSort {
+    public static final String NAME = "heapsort";
     
     public static <T extends Comparable<T>> void sort(ArrayList<T> tab) {
         heapSort(tab);

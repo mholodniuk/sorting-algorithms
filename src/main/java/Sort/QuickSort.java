@@ -7,6 +7,7 @@ import Structures.Movie;
 import Benchmark.Timer;
 
 public class QuickSort {
+    public static final String NAME = "quicksort";
 
     public static <T extends Comparable<T>> void sort(ArrayList<T> tab) {
         quickSort(tab, 0, tab.size() - 1);
