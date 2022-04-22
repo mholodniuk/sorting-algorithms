@@ -7,6 +7,8 @@ import Benchmark.Timer;
 
 public class MergeSort {
 
+    public static final String NAME = "mergesort";
+
     public static <T extends Comparable<T>> void sort(ArrayList<T> tab) {
         mergeSort(tab, tab.size());
     }
