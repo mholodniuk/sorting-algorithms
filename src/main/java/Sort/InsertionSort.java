@@ -22,7 +22,7 @@ public class InsertionSort {
     }
 
     public static void main(String[] args) {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_10000.csv");
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data.csv", 1000);
         Timer timer = new Timer(Timer.Precision.MILLISECONDS);
 
         timer.start();

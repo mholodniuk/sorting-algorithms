@@ -18,46 +18,51 @@ public class DataBaseDriver {
 
     public double getPerformance(String type, int size) throws SQLException {
         int counter = 0;
-        double average = 0;
+        double sum = 0;
         
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery("SELECT * FROM performance WHERE name='" + type + "' AND size=" + size);
 
         while(result.next()) {
             counter++;
-            average += result.getInt("time"); // ale chyba trzeba jeszcze rozwazyc rozne dlugosci tablic
+            sum += result.getInt("time");
             System.out.println(
                 "name: " + result.getString("name") + 
-                "time: " + result.getInt("time")  + 
-                "size: " + result.getInt("size"));
+                ", time: " + result.getInt("time")  + 
+                "ms, size: " + result.getInt("size"));
         } 
-        return (average/counter);
+        return (sum/counter);
     }
 
-    public void runSingleSorting(String type, int size) throws SQLException {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_" + size + ".csv");
+    public <T extends Comparable<T>> void runSingleSorting(ArrayList<T> list, String type, int size) throws SQLException {
         Timer timer = new Timer(Timer.Precision.MILLISECONDS);
 
         timer.start();
         switch(type) {
             case "merge":
-                MergeSort.sort(movies);
+                MergeSort.sort(list);
                 break;
+
             case "quick":
-                QuickSort.sort(movies);
+                QuickSort.sort(list);
                 break;
+
             case "intro":
-                IntroSort.sort(movies);
+                IntroSort.sort(list);
                 break;
+
             case "bubble":
-                BubbleSort.sort(movies);
+                BubbleSort.sort(list);
                 break;
+
             case "heap":
-                HeapSort.sort(movies);
+                HeapSort.sort(list);
                 break;
+
             case "insert":
-                InsertionSort.sort(movies);
+                InsertionSort.sort(list);
                 break;
+                
             default:
                 System.out.println("No such sorting algorithm implemented");
                 return;
@@ -74,14 +79,18 @@ public class DataBaseDriver {
 
     public static void main(String[] args) {
         DataBaseDriver db = null;
+        int size = 1000;
         try {
             db = new DataBaseDriver();
+            
+            for(int i = 0; i < 3; ++i) {
+                ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data.csv", size);
 
-            for(int i = 0; i < 10; ++i) {
-                db.runSingleSorting("quick", 1000);
-                db.runSingleSorting("merge", 1000);
-                db.runSingleSorting("bubble", 1000);
+                db.runSingleSorting(movies, "quick", size);
+
+                movies = null;
             }
+            db.getPerformance("quick", 10000);  
         }
         catch(SQLException e) {
             System.out.println("Unable to connect to database or handle a query");

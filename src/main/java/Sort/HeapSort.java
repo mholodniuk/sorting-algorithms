@@ -30,7 +30,7 @@ public class HeapSort {
         int left = 2 * i + 1;
         int right = 2 * i + 2;
         int largest = i;
-        if(left > size || right > size) 
+        if(left >= size || right >= size) 
             return;
 
         T leftElement = tab.get(left);
@@ -50,14 +50,14 @@ public class HeapSort {
 
     public static void main(String[] args) {
         for(int i = 0; i < 10; i++) {
-            ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_1000.csv");
+            ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data.csv", 1000);
             Timer timer = new Timer(Timer.Precision.MILLISECONDS);
 
             timer.start();
             HeapSort.sort(movies);
             long duration = timer.stop();
 
-            System.out.printf(i + ". Heapsort took: %d milliseconds\n", duration);
+            System.out.printf("Heapsort took: %d milliseconds\n", duration);
         }
     }
 }

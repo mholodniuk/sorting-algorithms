@@ -46,7 +46,7 @@ public class BubbleSortTest {
 
     @Test
     public void sortingTest() {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_1000.csv");
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data.csv", 1000);
         BubbleSort.sort(movies);
         assertTrue(OrderCheck.isInCorrectOrder(movies));
     }

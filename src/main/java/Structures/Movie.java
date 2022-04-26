@@ -30,6 +30,32 @@ public class Movie implements Comparable<Movie> {
             }
         }
         catch(Exception e) {
+            System.out.println("Error while trying to read file: " + filename);
+            e.printStackTrace();
+        }
+        return movies;
+    }
+
+    public static ArrayList<Movie> readMoviesFromFile(String filename, int size) {
+        FileReader fileReader = null;
+        CSVReader csvReader = null;
+        ArrayList<Movie> movies = new ArrayList<>();
+        String[] records;
+        int counter = 0;
+
+        try {
+            fileReader = new FileReader(filename);
+            csvReader = new CSVReader(fileReader);
+            records = csvReader.readNext(); // reads first line - ",movie,rating"
+            while((records = csvReader.readNext()) != null && counter < size) {
+                if(!records[1].isEmpty() && !records[2].isEmpty()) {
+                    counter++;
+                    movies.add(new Movie(records[1], Double.parseDouble(records[2])));
+                }
+            }
+        }
+        catch(Exception e) {
+            System.out.println("Error while trying to read file: " + filename);
             e.printStackTrace();
         }
         return movies;
@@ -82,7 +108,7 @@ public class Movie implements Comparable<Movie> {
     }
 
     public static void main(String[] args) {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data_10.csv");
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data.csv", 10);
         for(Movie movie: movies) {
             System.out.println(movie.toString());
         }
