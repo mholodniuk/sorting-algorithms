@@ -7,16 +7,15 @@ import Sort.*;
 import Structures.Movie;
 
 
-public class DataBaseDriver {
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "mysql1";
+public class DBDriver {
+
     private Connection connection = null;
 
-    public DataBaseDriver() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sort", USERNAME, PASSWORD);
+    public DBDriver() throws SQLException {
+        connection = DBConnect.Connect();
     }
 
-    public double getPerformance(String type, int size) throws SQLException {
+    public double getAverageTime(String type, int size) throws SQLException {
         int counter = 0;
         double sum = 0;
         
@@ -30,7 +29,8 @@ public class DataBaseDriver {
                 "name: " + result.getString("name") + 
                 ", time: " + result.getInt("time")  + 
                 "ms, size: " + result.getInt("size"));
-        } 
+        }
+        // System.out.println(result.getMetaData().getColumnCount());
         return (sum/counter);
     }
 
@@ -78,19 +78,19 @@ public class DataBaseDriver {
     }
 
     public static void main(String[] args) {
-        DataBaseDriver db = null;
+        DBDriver db = null;
         int size = 1000;
         try {
-            db = new DataBaseDriver();
+            db = new DBDriver();
             
             for(int i = 0; i < 3; ++i) {
                 ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data.csv", size);
 
-                db.runSingleSorting(movies, "quick", size);
+                //db.runSingleSorting(movies, "quick", size);
 
-                movies = null;
+                //movies = null;
             }
-            db.getPerformance("quick", 10000);  
+            db.getAverageTime("quick", 10000);  
         }
         catch(SQLException e) {
             System.out.println("Unable to connect to database or handle a query");
