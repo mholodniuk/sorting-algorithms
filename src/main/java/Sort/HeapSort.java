@@ -15,12 +15,14 @@ public class HeapSort {
     }
 
     private static <T extends Comparable<T>> void heapSort(ArrayList<T> tab) {
-        if(tab.size() < 1) 
-            return;
         int sizeOfHeap = tab.size();
+        if(sizeOfHeap < 1) 
+            return;
+        
         for(int i = (sizeOfHeap - 1) / 2; i >= 0; i--) {
             heapify(tab, i, sizeOfHeap);
         }
+
         for(int i = sizeOfHeap - 1; i > 0; i--) {
             Collections.swap(tab, 0, i);
             heapify(tab, 0, i);
@@ -28,9 +30,10 @@ public class HeapSort {
     }
 
     private static <T extends Comparable<T>> void heapify(ArrayList<T> tab, int i, int size) {
-        int left = 2 * i + 1;
-        int right = 2 * i + 2;
+        int left = 2 * i;
+        int right = 2 * i + 1;
         int largest = i;
+
         if(left >= size || right >= size) 
             return;
 
@@ -50,23 +53,13 @@ public class HeapSort {
     }
 
     public static void main(String[] args) {
-        // ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 10);
-        ArrayList<Integer> mixed = new ArrayList<>(Arrays.asList(3, 9, 4, 12, 6, 5, 7, 10, 2));
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 10);
+        Timer timer = new Timer(Timer.Precision.MILLISECONDS);
 
-        for(int elem: mixed) {
-            System.out.println(elem + " ");
-        }
-        System.out.println(" \n\n");
-        //Timer timer = new Timer(Timer.Precision.MILLISECONDS);
+        timer.start();
+        HeapSort.sort(movies);
+        long duration = timer.stop();
 
-        //timer.start();
-        HeapSort.sort(mixed);
-        //long duration = timer.stop();
-
-        for(int elem: mixed) {
-            System.out.println(elem + " ");
-        }
-
-        //System.out.printf("Heapsort took: %d milliseconds\n", duration);
+        System.out.printf("Heapsort took: %d milliseconds\n", duration);
     }
 }
