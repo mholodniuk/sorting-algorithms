@@ -3,6 +3,7 @@ package Sort;
 import java.util.ArrayList;
 
 import Structures.Movie;
+import Benchmark.OrderCheck;
 import Benchmark.Timer;
 
 public class InsertionSort {
@@ -29,6 +30,7 @@ public class InsertionSort {
         InsertionSort.sort(movies);
         long duration = timer.stop();
 
-        System.out.printf("InsertionSort took: %d milliseconds", duration);
+        if(OrderCheck.isInCorrectOrder(movies))
+            System.out.printf("InsertionSort took: %d milliseconds", duration);
     }
 }

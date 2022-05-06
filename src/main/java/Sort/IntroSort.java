@@ -18,18 +18,13 @@ public class IntroSort {
         int size = end - begin;
         if(size < 16) {
             InsertionSort.sort(tab);
-            return;
         }
-        if(maxDepth == 0) {
+        else if(maxDepth == 0) {
             HeapSort.sort(tab);
-            return;
-        } 
-        int pivot = medianOfThree(begin, begin + size/2 + 1 , end);
-        Collections.swap(tab, pivot, end);
-        int partition_idx = partition(tab, begin, end);
-
-        introSort(tab, begin, partition_idx - 1, maxDepth - 1);
-        introSort(tab, partition_idx + 1, end, maxDepth - 1);
+        }
+        else {
+            QuickSort.sort(tab);
+        }
     }
 
     private static <T extends Comparable<T>> int medianOfThree(int a, int b, int c) {
@@ -43,23 +38,39 @@ public class IntroSort {
         return c;
     }
 
-    private static <T extends Comparable<T>> int partition(ArrayList<T> tab, int begin, int end) {
-        T pivot = tab.get(end);
-        int i = begin - 1;
+    private static <T extends Comparable<T>> int randomPartition(ArrayList<T> tab, int low, int high) {
+        int pivotIndex = (int) Math.random() % (high - low + 1) + low;
+        T tmp = tab.get(pivotIndex);
+        Collections.swap(tab, pivotIndex, high);
 
-        for(int j = begin; j < end; j++) {
-            if(tab.get(j).compareTo(pivot) <= 0) {
-                i++;
-                Collections.swap(tab, i, j);
+        int currentIndex = low;
+        for(int i = low; i <= high - 1; i++) {
+            if(tab.get(i).compareTo(tmp) <= 0) {
+                Collections.swap(tab, currentIndex, i);
+                currentIndex++;
             }
         }
-        Collections.swap(tab, i + 1, end);
+        Collections.swap(tab, currentIndex, high);
+        return currentIndex;
+    }
+
+    private static <T extends Comparable<T>> int partition(ArrayList<T> tab, int low, int high) {
+        T pivot = tab.get(high);
+        int partIndex = low;
+
+        for(int i = low; i < high; i++) {
+            if(tab.get(i).compareTo(pivot) <= 0) {
+                partIndex++;
+                Collections.swap(tab, partIndex, i);
+            }
+        }
+        Collections.swap(tab, partIndex, high);
         
-        return i+1;
+        return partIndex;
     }
 
     public static void main(String[] args) {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 1000);
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 100000);
         Timer timer = new Timer(Timer.Precision.MILLISECONDS);
 
         timer.start();

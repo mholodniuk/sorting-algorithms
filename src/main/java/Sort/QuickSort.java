@@ -13,28 +13,27 @@ public class QuickSort {
         quickSort(tab, 0, tab.size() - 1);
     }
 
-    private static <T extends Comparable<T>> void quickSort(ArrayList<T> tab, int begin, int end) {
-        if(begin < end) {
-            int partition_idx = partition(tab, begin, end);
+    private static <T extends Comparable<T>> void quickSort(ArrayList<T> tab, int left, int right) {
+        int leftIndex = left, rightIndex = right;
+        T pivot = tab.get(left);
 
-            quickSort(tab, begin, partition_idx - 1);
-            quickSort(tab, partition_idx + 1, end);
-        }
-    }
-
-    private static <T extends Comparable<T>> int partition(ArrayList<T> tab, int begin, int end) {
-        T pivot = tab.get(end);
-        int i = begin - 1;
-
-        for(int j = begin; j < end; j++) {
-            if(tab.get(j).compareTo(pivot) <= 0) {
-                i++;
-                Collections.swap(tab, i, j);
+        while(leftIndex <= rightIndex) {
+            while(tab.get(leftIndex).compareTo(pivot) < 0)
+                ++leftIndex;
+            while(tab.get(rightIndex).compareTo(pivot) > 0)
+                --rightIndex;
+            
+            if(leftIndex <= rightIndex) {
+                Collections.swap(tab, leftIndex, rightIndex);
+                ++leftIndex;
+                --rightIndex;
             }
         }
-        Collections.swap(tab, i + 1, end);
-        
-        return i+1;
+        if(left < rightIndex)
+            quickSort(tab, left, rightIndex);
+            
+        if(right > leftIndex)
+            quickSort(tab, leftIndex, right);
     }
 
     public static void main(String[] args) {
