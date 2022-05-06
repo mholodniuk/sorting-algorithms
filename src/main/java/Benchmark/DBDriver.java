@@ -36,12 +36,11 @@ public class DBDriver {
         while(result.next()) {
             counter++;
             sum += result.getInt("time");
-            System.out.println(
-                "name: " + result.getString("name") + 
-                ", time: " + result.getInt("time")  + 
-                "ms, size: " + result.getInt("size"));
+            // System.out.println(
+            //     "name: " + result.getString("name") + 
+            //     ", time: " + result.getInt("time")  + 
+            //     "ms, size: " + result.getInt("size"));
         }
-        // System.out.println(result.getMetaData().getColumnCount());
         return (sum/counter);
     }
 
