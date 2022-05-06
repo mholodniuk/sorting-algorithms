@@ -6,11 +6,8 @@ class DBConnect {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "mysql1";
 
-    public static Connection Connect() {
+    public static Connection connect() {
         try {
-            // Connect to mysql library
-            //Class.forName("com.mysql.jdbc.Driver");
-            // jdbc:mysql://hostname:port/databasename, server username, server password
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sort", USERNAME, PASSWORD);
             return conn;
             

@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class HeapSortTest {
     
     @Test
-    public void testMergeSortInt() {
+    public void testHeapSortInt() {
         ArrayList<Integer> mixed = new ArrayList<>(Arrays.asList(3, 8, 4, 12, 6, 5, 7, 10, 2));
         ArrayList<Integer> expected = new ArrayList<>(Arrays.asList(2, 3, 4, 5, 6, 7, 8, 10, 12));
 
@@ -23,7 +23,7 @@ public class HeapSortTest {
     }
 
     @Test
-    public void testMergeSortMovie() {
+    public void testHeapSortMovie() {
         Movie m1 = new Movie("Film 1", 1.0);
         Movie m2 = new Movie("Film 3", 3.0);
         Movie m3 = new Movie("Film 5", 5.0);
@@ -48,7 +48,7 @@ public class HeapSortTest {
 
     @Test
     public void sortingTest() {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data.csv", 1000);
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 10235);
         HeapSort.sort(movies);
         assertTrue(OrderCheck.isInCorrectOrder(movies));
     }

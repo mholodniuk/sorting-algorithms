@@ -11,8 +11,19 @@ public class DBDriver {
 
     private Connection connection = null;
 
-    public DBDriver() throws SQLException {
-        connection = DBConnect.Connect();
+    public DBDriver() {
+        connection = DBConnect.connect();
+    }
+
+    public void close() {
+        try {
+            if(connection != null)
+                connection.close();
+        }
+        catch(SQLException e) {
+            System.out.println("Can not close connection to database");
+            e.printStackTrace();
+        }
     }
 
     public double getAverageTime(String type, int size) throws SQLException {
@@ -32,6 +43,13 @@ public class DBDriver {
         }
         // System.out.println(result.getMetaData().getColumnCount());
         return (sum/counter);
+    }
+
+    public void clearDataBase() throws SQLException {
+        Statement statement = connection.createStatement();
+        String query = "DELETE FROM performance;";
+
+        statement.executeUpdate(query);
     }
 
     public <T extends Comparable<T>> void runSingleSorting(ArrayList<T> list, String type, int size) throws SQLException {
@@ -79,22 +97,28 @@ public class DBDriver {
 
     public static void main(String[] args) {
         DBDriver db = null;
-        int size = 1000;
+        int size = 10000;
         try {
             db = new DBDriver();
+
+            //db.clearDataBase();
             
             for(int i = 0; i < 3; ++i) {
-                ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data.csv", size);
+                ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", size);
 
-                //db.runSingleSorting(movies, "quick", size);
+                db.runSingleSorting(movies, "quick", size);
 
-                //movies = null;
+                movies = null;
+                size *= 2;
             }
-            db.getAverageTime("quick", 10000);  
+            //db.getAverageTime("merge", size);  
         }
         catch(SQLException e) {
             System.out.println("Unable to connect to database or handle a query");
             e.printStackTrace();
+        }
+        finally {
+            db.close();
         }
     }
 }

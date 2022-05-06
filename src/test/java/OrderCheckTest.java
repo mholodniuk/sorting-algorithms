@@ -12,14 +12,14 @@ public class OrderCheckTest {
 
     @Test
     public void unorderedListTest() {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data.csv", 1000);
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 1000);
         
         assertFalse(OrderCheck.isInCorrectOrder(movies));
     }
 
     @Test
     public void orderedListTest() {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data.csv", 1000);
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 1000);
         QuickSort.sort(movies);
         assertTrue(OrderCheck.isInCorrectOrder(movies));
     }

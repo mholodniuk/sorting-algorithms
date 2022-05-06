@@ -38,7 +38,7 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data.csv", 12);
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 1244);
         Timer timer = new Timer(Timer.Precision.MILLISECONDS);
 
         timer.start();

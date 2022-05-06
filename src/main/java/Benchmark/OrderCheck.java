@@ -17,7 +17,7 @@ public class OrderCheck {
     }
 
     public static void main(String[] args) {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data.csv", 1000);
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 1000);
         BubbleSort.sort(movies);
         boolean good = OrderCheck.isInCorrectOrder(movies);
 

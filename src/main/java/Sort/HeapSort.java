@@ -1,6 +1,7 @@
 package Sort;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 import Benchmark.Timer;
@@ -17,7 +18,7 @@ public class HeapSort {
         if(tab.size() < 1) 
             return;
         int sizeOfHeap = tab.size();
-        for(int i = sizeOfHeap/2 - 1; i >= 0; i--) {
+        for(int i = (sizeOfHeap - 1) / 2; i >= 0; i--) {
             heapify(tab, i, sizeOfHeap);
         }
         for(int i = sizeOfHeap - 1; i > 0; i--) {
@@ -49,15 +50,23 @@ public class HeapSort {
     }
 
     public static void main(String[] args) {
-        for(int i = 0; i < 10; i++) {
-            ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data.csv", 1000);
-            Timer timer = new Timer(Timer.Precision.MILLISECONDS);
+        // ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 10);
+        ArrayList<Integer> mixed = new ArrayList<>(Arrays.asList(3, 9, 4, 12, 6, 5, 7, 10, 2));
 
-            timer.start();
-            HeapSort.sort(movies);
-            long duration = timer.stop();
-
-            System.out.printf("Heapsort took: %d milliseconds\n", duration);
+        for(int elem: mixed) {
+            System.out.println(elem + " ");
         }
+        System.out.println(" \n\n");
+        //Timer timer = new Timer(Timer.Precision.MILLISECONDS);
+
+        //timer.start();
+        HeapSort.sort(mixed);
+        //long duration = timer.stop();
+
+        for(int elem: mixed) {
+            System.out.println(elem + " ");
+        }
+
+        //System.out.printf("Heapsort took: %d milliseconds\n", duration);
     }
 }

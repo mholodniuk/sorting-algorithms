@@ -45,7 +45,7 @@ public class MergeSortTest {
 
     @Test
     public void sortingTest() {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data.csv", 1000);
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 1000);
         MergeSort.sort(movies);
         assertTrue(OrderCheck.isInCorrectOrder(movies));
     }

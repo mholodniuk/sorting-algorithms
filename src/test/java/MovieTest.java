@@ -32,7 +32,7 @@ public class MovieTest {
 
     @Test
     public void testReadFromFileWithSize() {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data.csv", 10);
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 10);
         
         Movie other = new Movie("The Droving (2020)", 2.0);
         assertTrue(movies.get(4).equals(other) && movies.size() == 10);
