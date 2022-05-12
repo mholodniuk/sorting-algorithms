@@ -9,7 +9,7 @@ public class IntroSort {
     public static final String NAME = "introsort";
     
     public static <T extends Comparable<T>> void sort(ArrayList<T> tab) {
-        int maxDepth = (int)(2 * Math.floor(Math.log(tab.size())/Math.log(2)));
+        int maxDepth = (int)(2 * Math.floor( Math.log( tab.size() ) / Math.log(2) ) );
         introSort(tab, 0, tab.size() - 1, maxDepth);
     }
 

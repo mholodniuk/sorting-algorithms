@@ -13,7 +13,7 @@ class DBConnect {
             
         } catch (Exception ex) {
             // If connection fail
-            System.out.println("Erro: " + ex);
+            System.out.println("Error: " + ex);
             ex.printStackTrace();
             return null;
         }
