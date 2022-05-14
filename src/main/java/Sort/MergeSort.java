@@ -1,6 +1,6 @@
 package Sort;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import Structures.Movie;
 import Benchmark.Timer;
@@ -8,16 +8,16 @@ import Benchmark.Timer;
 public class MergeSort {
     public static final String NAME = "mergesort";
 
-    public static <T extends Comparable<T>> void sort(ArrayList<T> tab) {
+    public static <T extends Comparable<T>> void sort(LinkedList<T> tab) {
         mergeSort(tab, tab.size());
     }
 
-    private static <T extends Comparable<T>> void mergeSort(ArrayList<T> tab, int n) {
+    private static <T extends Comparable<T>> void mergeSort(LinkedList<T> tab, int n) {
         if(n < 2) 
             return;
         int mid = n / 2;
-        ArrayList<T> left_tab = new ArrayList<>();
-        ArrayList<T> right_tab = new ArrayList<>();
+        LinkedList<T> left_tab = new LinkedList<>();
+        LinkedList<T> right_tab = new LinkedList<>();
 
         for(int i = 0; i < mid; i++) {
             left_tab.add(i, tab.get(i));
@@ -31,7 +31,7 @@ public class MergeSort {
     }
 
     private static <T extends Comparable<T>> void merge(
-        ArrayList<T> left_tab, ArrayList<T> right_tab, ArrayList<T> tab, int left, int right) {
+        LinkedList<T> left_tab, LinkedList<T> right_tab, LinkedList<T> tab, int left, int right) {
         
         int i = 0, j = 0, k = 0;
         while(i < left && j < right) {
@@ -49,7 +49,7 @@ public class MergeSort {
     }
 
     public static void main(String[] args) {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 1000);
+        LinkedList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 1000);
         Timer timer = new Timer(Timer.Precision.MILLISECONDS);
 
         timer.start();

@@ -1,5 +1,5 @@
 import java.sql.*;
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import Benchmark.*;
 import Structures.Movie;
@@ -7,13 +7,13 @@ import Structures.Movie;
 
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main (String[] args) {
         DBDriver db = null;
 
         final int MAX = 1000000;
 
-        int sizes[] = {10000, 100000, 500000, MAX};
-        ArrayList<Movie> movies = null;
+        int sizes[] = {10000, 20000, 50000, 100000, 200000, 500000, MAX};
+        LinkedList<Movie> movies = null;
 
         try {
             db = new DBDriver();
@@ -21,7 +21,7 @@ public class Main {
             
             for(int i = 0; i < 1; i++) {
                 for(int size: sizes) {
-                    ArrayList<Movie> unsortedMovies = Movie.readMoviesFromFile("src/main/resources/data.csv", size);
+                    final LinkedList<Movie> unsortedMovies = Movie.readMoviesFromFile("src/main/resources/data.csv", size);
                     
                     movies = unsortedMovies;
                     db.runSingleSorting(movies, "merge", size);

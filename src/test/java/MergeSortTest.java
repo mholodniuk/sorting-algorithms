@@ -7,15 +7,15 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Arrays;
 
 public class MergeSortTest {
     
     @Test
     public void testMergeSortInt() {
-        ArrayList<Integer> mixed = new ArrayList<>(Arrays.asList(3, 8, 4, 12, 6, 5, 7, 10, 2));
-        ArrayList<Integer> expected = new ArrayList<>(Arrays.asList(2, 3, 4, 5, 6, 7, 8, 10, 12));
+        LinkedList<Integer> mixed = new LinkedList<>(Arrays.asList(3, 8, 4, 12, 6, 5, 7, 10, 2));
+        LinkedList<Integer> expected = new LinkedList<>(Arrays.asList(2, 3, 4, 5, 6, 7, 8, 10, 12));
 
         MergeSort.sort(mixed);
         assertArrayEquals(expected.toArray(), mixed.toArray());
@@ -30,8 +30,8 @@ public class MergeSortTest {
         Movie m5 = new Movie("Film 6", 6.0);
         Movie m6 = new Movie("Film 4", 4.0);
 
-        ArrayList<Movie> mixed = new ArrayList<>();
-        ArrayList<Movie> expected = new ArrayList<>();
+        LinkedList<Movie> mixed = new LinkedList<>();
+        LinkedList<Movie> expected = new LinkedList<>();
         mixed.add(m1); expected.add(m1);
         mixed.add(m2); expected.add(m4);
         mixed.add(m3); expected.add(m2);
@@ -45,7 +45,7 @@ public class MergeSortTest {
 
     @Test
     public void sortingTest() {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 1000);
+        LinkedList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 1000);
         MergeSort.sort(movies);
         assertTrue(OrderCheck.isInCorrectOrder(movies));
     }

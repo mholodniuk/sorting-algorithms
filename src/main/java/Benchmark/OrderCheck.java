@@ -1,11 +1,11 @@
 package Benchmark;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import Structures.Movie;
 import Sort.BubbleSort;
 
 public class OrderCheck {
-    public static <T extends Comparable<T>> boolean isInCorrectOrder(ArrayList<T> tab) {
+    public static <T extends Comparable<T>> boolean isInCorrectOrder(LinkedList<T> tab) {
         T previous = tab.get(0);
         for(T elem: tab) {
             if(previous.compareTo(elem) > 0) {
@@ -17,7 +17,7 @@ public class OrderCheck {
     }
 
     public static void main(String[] args) {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 1000);
+        LinkedList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 1000);
         BubbleSort.sort(movies);
         boolean good = OrderCheck.isInCorrectOrder(movies);
 

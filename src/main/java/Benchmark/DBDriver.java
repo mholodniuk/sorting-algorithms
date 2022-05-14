@@ -1,7 +1,7 @@
 package Benchmark;
 
 import java.sql.*;
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import Sort.*;
 import Structures.Movie;
@@ -51,7 +51,7 @@ public class DBDriver {
         statement.executeUpdate(query);
     }
 
-    public <T extends Comparable<T>> void runSingleSorting(ArrayList<T> list, String type, int size) throws SQLException {
+    public <T extends Comparable<T>> void runSingleSorting(LinkedList<T> list, String type, int size) throws SQLException {
         Timer timer = new Timer(Timer.Precision.MILLISECONDS);
 
         timer.start();
@@ -103,7 +103,7 @@ public class DBDriver {
             //db.clearDataBase();
             
             for(int i = 0; i < 3; ++i) {
-                ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", size);
+                LinkedList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", size);
 
                 db.runSingleSorting(movies, "quick", size);
 

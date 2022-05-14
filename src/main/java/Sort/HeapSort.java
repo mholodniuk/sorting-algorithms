@@ -1,6 +1,6 @@
 package Sort;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Collections;
 
 import Benchmark.Timer;
@@ -9,11 +9,11 @@ import Structures.Movie;
 public class HeapSort {
     public static final String NAME = "heapsort";
     
-    public static <T extends Comparable<T>> void sort(ArrayList<T> tab) {
+    public static <T extends Comparable<T>> void sort(LinkedList<T> tab) {
         heapSort(tab); 
     }
 
-    private static <T extends Comparable<T>> void heapSort(ArrayList<T> tab) {
+    private static <T extends Comparable<T>> void heapSort(LinkedList<T> tab) {
         int sizeOfHeap = tab.size();
         if(sizeOfHeap < 1) 
             return;
@@ -28,7 +28,7 @@ public class HeapSort {
         }
     }
 
-    private static <T extends Comparable<T>> void heapify(ArrayList<T> tab, int i, int size) {
+    private static <T extends Comparable<T>> void heapify(LinkedList<T> tab, int i, int size) {
         int left = 2 * i;
         int right = 2 * i + 1;
         int largest = i;
@@ -52,7 +52,7 @@ public class HeapSort {
     }
 
     public static void main(String[] args) {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 10);
+        LinkedList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 10);
         Timer timer = new Timer(Timer.Precision.MILLISECONDS);
 
         timer.start();

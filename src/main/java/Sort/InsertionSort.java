@@ -1,6 +1,6 @@
 package Sort;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import Structures.Movie;
 import Benchmark.OrderCheck;
@@ -9,7 +9,7 @@ import Benchmark.Timer;
 public class InsertionSort {
     public static final String NAME = "insertionsort";
     
-    public static <T extends Comparable<T>> void sort(ArrayList<T> tab) {
+    public static <T extends Comparable<T>> void sort(LinkedList<T> tab) {
         int length = tab.size();
         for(int i = 1; i < length; i++) {
             T key = tab.get(i);
@@ -23,7 +23,7 @@ public class InsertionSort {
     }
 
     public static void main(String[] args) {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 1000);
+        LinkedList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 1000);
         Timer timer = new Timer(Timer.Precision.MILLISECONDS);
 
         timer.start();

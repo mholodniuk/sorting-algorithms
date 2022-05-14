@@ -4,7 +4,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Arrays;
 
 public class MovieTest {
@@ -32,7 +32,7 @@ public class MovieTest {
 
     @Test
     public void testReadFromFileWithSize() {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 10);
+        LinkedList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 10);
         
         Movie other = new Movie("The Droving (2020)", 2.0);
         assertTrue(movies.get(4).equals(other) && movies.size() == 10);

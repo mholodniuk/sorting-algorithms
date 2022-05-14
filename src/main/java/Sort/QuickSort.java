@@ -1,6 +1,6 @@
 package Sort;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Collections;
 
 import Structures.Movie;
@@ -9,11 +9,11 @@ import Benchmark.Timer;
 public class QuickSort {
     public static final String NAME = "quicksort";
 
-    public static <T extends Comparable<T>> void sort(ArrayList<T> tab) {
+    public static <T extends Comparable<T>> void sort(LinkedList<T> tab) {
         quickSort(tab, 0, tab.size() - 1);
     }
 
-    private static <T extends Comparable<T>> void quickSort(ArrayList<T> tab, int left, int right) {
+    private static <T extends Comparable<T>> void quickSort(LinkedList<T> tab, int left, int right) {
         int leftIndex = left, rightIndex = right;
         T pivot = tab.get(left);
 
@@ -37,7 +37,7 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 10000);
+        LinkedList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 10000);
         Timer timer = new Timer(Timer.Precision.MILLISECONDS);
 
         timer.start();

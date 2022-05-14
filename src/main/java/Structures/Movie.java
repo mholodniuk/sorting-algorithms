@@ -1,6 +1,6 @@
 package Structures;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.io.FileReader;
 import com.opencsv.CSVReader;
 
@@ -14,10 +14,10 @@ public class Movie implements Comparable<Movie> {
         this.rating = rating;
     }
 
-    public static ArrayList<Movie> readMoviesFromFile(String filename) {
+    public static LinkedList<Movie> readMoviesFromFile(String filename) {
         FileReader fileReader = null;
         CSVReader csvReader = null;
-        ArrayList<Movie> movies = new ArrayList<>();
+        LinkedList<Movie> movies = new LinkedList<>();
         String[] records;
 
         try {
@@ -36,10 +36,10 @@ public class Movie implements Comparable<Movie> {
         return movies;
     }
 
-    public static ArrayList<Movie> readMoviesFromFile(String filename, int size) {
+    public static LinkedList<Movie> readMoviesFromFile(String filename, int size) {
         FileReader fileReader = null;
         CSVReader csvReader = null;
-        ArrayList<Movie> movies = new ArrayList<>();
+        LinkedList<Movie> movies = new LinkedList<>();
         String[] records;
         int counter = 0;
 
@@ -108,7 +108,7 @@ public class Movie implements Comparable<Movie> {
     }
 
     public static void main(String[] args) {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data.csv", 10);
+        LinkedList<Movie> movies = Movie.readMoviesFromFile("resources/data.csv", 10);
         for(Movie movie: movies) {
             System.out.println(movie.toString());
         }

@@ -1,6 +1,6 @@
 package Sort;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import Benchmark.Timer;
 import Structures.Movie;
@@ -8,12 +8,12 @@ import Structures.Movie;
 public class IntroSort {
     public static final String NAME = "introsort";
     
-    public static <T extends Comparable<T>> void sort(ArrayList<T> tab) {
+    public static <T extends Comparable<T>> void sort(LinkedList<T> tab) {
         int maxDepth = (int)(2 * Math.floor( Math.log( tab.size() ) / Math.log(2) ) );
         introSort(tab, 0, tab.size() - 1, maxDepth);
     }
 
-    private static <T extends Comparable<T>> void introSort(ArrayList<T> tab, int begin, int end, int maxDepth) {
+    private static <T extends Comparable<T>> void introSort(LinkedList<T> tab, int begin, int end, int maxDepth) {
         int size = end - begin;
         if(size < 16) {
             InsertionSort.sort(tab);
@@ -27,7 +27,7 @@ public class IntroSort {
     }
 
     public static void main(String[] args) {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 100000);
+        LinkedList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 100000);
         Timer timer = new Timer(Timer.Precision.MILLISECONDS);
 
         timer.start();
