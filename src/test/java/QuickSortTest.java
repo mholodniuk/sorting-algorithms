@@ -46,7 +46,7 @@ public class QuickSortTest {
 
     @Test
     public void sortingTest() {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 100000);
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 10000);
         QuickSort.sort(movies);
         assertTrue(OrderCheck.isInCorrectOrder(movies));
     }

@@ -48,7 +48,7 @@ public class HeapSortTest {
 
     @Test
     public void sortingTest() {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 10235);
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 10000);
         HeapSort.sort(movies);
         assertTrue(OrderCheck.isInCorrectOrder(movies));
     }

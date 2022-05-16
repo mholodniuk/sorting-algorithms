@@ -52,7 +52,7 @@ public class HeapSort {
     }
 
     public static void main(String[] args) {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 10);
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 1000);
         Timer timer = new Timer(Timer.Precision.MILLISECONDS);
 
         timer.start();

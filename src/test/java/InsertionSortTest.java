@@ -46,7 +46,7 @@ public class InsertionSortTest {
 
     @Test
     public void sortingTest() {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 1000);
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 10000);
         InsertionSort.sort(movies);
         assertTrue(OrderCheck.isInCorrectOrder(movies));
     }
