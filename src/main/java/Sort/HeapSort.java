@@ -52,13 +52,15 @@ public class HeapSort {
     }
 
     public static void main(String[] args) {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 1000);
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 10000);
         Timer timer = new Timer(Timer.Precision.MILLISECONDS);
 
         timer.start();
-        HeapSort.sort(movies);
+        long beforeUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        MergeSort.sort(movies);
+        long afterUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         long duration = timer.stop();
 
-        System.out.printf("Heapsort took: %d milliseconds\n", duration);
+        System.out.printf("HeapSort took: %d milliseconds\t memory usage: %d", duration, afterUsedMem-beforeUsedMem);
     }
 }

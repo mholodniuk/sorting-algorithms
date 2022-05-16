@@ -27,13 +27,15 @@ public class IntroSort {
     }
 
     public static void main(String[] args) {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 100000);
+        ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 10000);
         Timer timer = new Timer(Timer.Precision.MILLISECONDS);
 
         timer.start();
+        long beforeUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         IntroSort.sort(movies);
+        long afterUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         long duration = timer.stop();
 
-        System.out.printf("IntroSort took: %d milliseconds", duration);
+        System.out.printf("MergeSort took: %d milliseconds\t memory usage: %d", duration, afterUsedMem-beforeUsedMem);
     }
 }

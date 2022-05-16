@@ -41,9 +41,11 @@ public class QuickSort {
         Timer timer = new Timer(Timer.Precision.MILLISECONDS);
 
         timer.start();
-        MergeSort.sort(movies);
+        long beforeUsedMem = Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+        QuickSort.sort(movies);
+        long afterUsedMem = Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
         long duration = timer.stop();
 
-        System.out.printf("QuickSort took: %d milliseconds", duration);
+        System.out.printf("QuickSort took: %d milliseconds\t memory usage: %d", duration, afterUsedMem-beforeUsedMem);
     }
 }

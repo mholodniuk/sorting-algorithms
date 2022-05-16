@@ -1,8 +1,11 @@
 package Structures;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.io.FileReader;
 import com.opencsv.CSVReader;
+
+import Benchmark.*;
 
 
 public class Movie implements Comparable<Movie> {
@@ -42,6 +45,7 @@ public class Movie implements Comparable<Movie> {
         ArrayList<Movie> movies = new ArrayList<>();
         String[] records;
         int counter = 0;
+        //double average = 0;
 
         try {
             fileReader = new FileReader(filename);
@@ -50,6 +54,7 @@ public class Movie implements Comparable<Movie> {
             while((records = csvReader.readNext()) != null && counter < size) {
                 if(!records[1].isEmpty() && !records[2].isEmpty()) {
                     counter++;
+                    //average += Double.parseDouble(records[2]);
                     movies.add(new Movie(records[1], Double.parseDouble(records[2])));
                 }
             }
@@ -58,6 +63,7 @@ public class Movie implements Comparable<Movie> {
             System.out.println("Error while trying to read file: " + filename);
             e.printStackTrace();
         }
+        //System.out.println("Average of " + size + " elements equals " + average/counter);
         return movies;
     }
 
@@ -88,6 +94,45 @@ public class Movie implements Comparable<Movie> {
                "\nRating: " + this.rating;
     }
 
+    public static void calculateAddingTime() {
+        Timer timer = new Timer(Timer.Precision.MILLISECONDS);
+        int sizes[] = {10000, 50000, 100000, 500000, 800000, 1000000};
+
+        for(int size: sizes) {
+            timer.start();
+            ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", size);
+            long duration = timer.stop();
+            System.out.printf("Redaing file of size %d took: %d milliseconds\n", size, duration);   
+        }
+    }
+
+    public static void calculateAverageRating() {
+        int sizes[] = {10000, 50000, 100000, 500000, 800000, 1000000};
+
+        for(int size: sizes) {
+            ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", size);
+        }
+    }
+
+    public static void calculateMedianRating() {
+        int sizes[] = {10000, 50000, 100000, 500000, 800000, 1000000};
+        double median = 0;
+
+        for(int size: sizes) {
+            ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", size);
+            Collections.sort(movies);
+            if(movies.size() % 2 == 0) {
+                int index1 = (movies.size() - 1) / 2;
+                int index2 = movies.size() / 2;
+                median = (movies.get(index1).getRating() + movies.get(index2).getRating()) / 2;
+            } else {
+                int index = (movies.size() - 1) / 2;
+                median = movies.get(index).getRating();
+            }
+            System.out.println("Median of " + size + " equals " + median);
+        }
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -108,9 +153,6 @@ public class Movie implements Comparable<Movie> {
     }
 
     public static void main(String[] args) {
-        ArrayList<Movie> movies = Movie.readMoviesFromFile("resources/data.csv", 10);
-        for(Movie movie: movies) {
-            System.out.println(movie.toString());
-        }
+        Movie.calculateMedianRating();
     }
 }
