@@ -13,6 +13,7 @@ public class Main {
         final int MAX = 1000000;
 
         int sizes[] = {10000, 50000, 100000, 200000, 500000, MAX};
+        //String names[] = {"merge", "quick", "intro"};
         ArrayList<Movie> movies = null;
 
         try {
