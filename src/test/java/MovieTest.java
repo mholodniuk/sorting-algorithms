@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class MovieTest {
 
@@ -36,5 +37,18 @@ public class MovieTest {
         
         Movie other = new Movie("The Droving (2020)", 2.0);
         assertTrue(movies.get(4).equals(other) && movies.size() == 10);
+    }
+
+    @Test
+    public void testCopyMovieArray() {
+        ArrayList<Movie> unsortedMovies = Movie.readMoviesFromFile("src/main/resources/data.csv", 10);
+        ArrayList<Movie> moviesToSort = Movie.copyArray(unsortedMovies);
+        // ArrayList<Movie> moviesToSort = unsortedMovies; will fail, because we want a deep copy
+
+        assertTrue(unsortedMovies.get(0) == moviesToSort.get(0));
+
+        Collections.sort(moviesToSort);
+
+        assertTrue(unsortedMovies.get(0) != moviesToSort.get(0));
     }
 }

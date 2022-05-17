@@ -5,7 +5,6 @@ import Benchmark.*;
 import Structures.Movie;
 
 
-
 public class Main {
     public static void main(String[] args) {
 
@@ -19,10 +18,10 @@ public class Main {
         try {
             db = new DBDriver();
             //db.clearDataBase();
-            for(int i = 0; i < 1; i++) {
+            for(int i = 0; i < 3; i++) {
                 for(int size: sizes) {
                     final ArrayList<Movie> unsortedMovies = Movie.readMoviesFromFile("src/main/resources/data.csv", size);
-                     
+                    
                     movies = Movie.copyArray(unsortedMovies);
                     db.runSingleSorting(movies, "merge", size);
                     
@@ -31,8 +30,6 @@ public class Main {
                     
                     movies = Movie.copyArray(unsortedMovies);
                     db.runSingleSorting(movies, "intro", size);
-    
-                    movies = null;
                 }
             }
             for(int size: sizes) {
