@@ -19,18 +19,17 @@ public class Main {
         try {
             db = new DBDriver();
             //db.clearDataBase();
-            
-            for(int i = 0; i < 10; i++) {
+            for(int i = 0; i < 1; i++) {
                 for(int size: sizes) {
                     final ArrayList<Movie> unsortedMovies = Movie.readMoviesFromFile("src/main/resources/data.csv", size);
                      
-                    movies = unsortedMovies;
+                    movies = Movie.copyArray(unsortedMovies);
                     db.runSingleSorting(movies, "merge", size);
                     
-                    movies = unsortedMovies;
+                    movies = Movie.copyArray(unsortedMovies);
                     db.runSingleSorting(movies, "quick", size);
                     
-                    movies = unsortedMovies;
+                    movies = Movie.copyArray(unsortedMovies);
                     db.runSingleSorting(movies, "intro", size);
     
                     movies = null;

@@ -17,26 +17,10 @@ public class Movie implements Comparable<Movie> {
         this.rating = rating;
     }
 
-    public static ArrayList<Movie> readMoviesFromFile(String filename) {
-        FileReader fileReader = null;
-        CSVReader csvReader = null;
-        ArrayList<Movie> movies = new ArrayList<>();
-        String[] records;
-
-        try {
-            fileReader = new FileReader(filename);
-            csvReader = new CSVReader(fileReader);
-            records = csvReader.readNext(); // reads first line - ",movie,rating"
-            while((records = csvReader.readNext()) != null) {
-                if(!records[1].isEmpty() && !records[2].isEmpty())
-                    movies.add(new Movie(records[1], Double.parseDouble(records[2])));
-            }
-        }
-        catch(Exception e) {
-            System.out.println("Error while trying to read file: " + filename);
-            e.printStackTrace();
-        }
-        return movies;
+    public static ArrayList<Movie> copyArray(ArrayList<Movie> movies) {
+        ArrayList<Movie> copy = new ArrayList<Movie>(movies.size());
+        copy.addAll(movies);
+        return copy;
     }
 
     public static ArrayList<Movie> readMoviesFromFile(String filename, int size) {
@@ -64,6 +48,7 @@ public class Movie implements Comparable<Movie> {
             e.printStackTrace();
         }
         //System.out.println("Average of " + size + " elements equals " + average/counter);
+        // System.out.println("Total movies inserted: " + counter);
         return movies;
     }
 
@@ -153,6 +138,7 @@ public class Movie implements Comparable<Movie> {
     }
 
     public static void main(String[] args) {
-        Movie.calculateMedianRating();
+        // Movie.calculateMedianRating();
+        // Movie.readMoviesFromFile("src/main/resources/data.csv", 1000000);
     }
 }

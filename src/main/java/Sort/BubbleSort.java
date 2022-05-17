@@ -18,15 +18,33 @@ public class BubbleSort {
     }
 
     public static void main(String[] args) {
-        for(int i = 0; i < 10; i++) {
-            ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 1000);
-            Timer timer = new Timer(Timer.Precision.MILLISECONDS);
+        final ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", 5);
 
+        System.out.println("Pobrana z pliku");
+        for(Movie movie: movies) {
+            System.out.println(movie.toString());
+        }
+
+        for(int i = 0; i < 3; i++) {
+            
+            ArrayList<Movie> moviesToSort = Movie.copyArray(movies);
+
+            System.out.println("\n\nprzeniesiona do moviesToSort");
+            for(Movie movie: moviesToSort) {
+                System.out.println(movie.toString());
+            }
+
+            Timer timer = new Timer(Timer.Precision.MILLISECONDS);
             timer.start();
-            BubbleSort.sort(movies);
+            BubbleSort.sort(moviesToSort);
             long duration = timer.stop();
 
-            System.out.printf(i + ". bubbleSort took: %d milliseconds\n", duration);
+            System.out.println("\n\nposortowana");
+            for(Movie movie: moviesToSort) {
+                System.out.println(movie.toString());
+            }
+
+            System.out.printf(i + ". bubbleSort took: %d milliseconds\n\n", duration);
         }
     }
 }
