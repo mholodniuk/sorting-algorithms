@@ -1,7 +1,7 @@
 package Benchmark;
 
 public class Timer {
-    public enum Precision {
+    public static enum Precision {
         MILLISECONDS,
         NANOSECONDS
     }
@@ -16,9 +16,9 @@ public class Timer {
     public void start() {
         this.start = 0;
         if(precision == Precision.MILLISECONDS)
-            start = System.currentTimeMillis();
+            this.start = System.currentTimeMillis();
         if(precision == Precision.NANOSECONDS)
-            start = System.nanoTime();
+            this.start = System.nanoTime();
     }
 
     public long stop() {

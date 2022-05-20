@@ -31,11 +31,9 @@ public class IntroSort {
         Timer timer = new Timer(Timer.Precision.MILLISECONDS);
 
         timer.start();
-        long beforeUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         IntroSort.sort(movies);
-        long afterUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         long duration = timer.stop();
 
-        System.out.printf("MergeSort took: %d milliseconds\t memory usage: %d", duration, afterUsedMem-beforeUsedMem);
+        System.out.printf("MergeSort took: %d milliseconds", duration);
     }
 }

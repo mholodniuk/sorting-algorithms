@@ -56,11 +56,9 @@ public class HeapSort {
         Timer timer = new Timer(Timer.Precision.MILLISECONDS);
 
         timer.start();
-        long beforeUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         MergeSort.sort(movies);
-        long afterUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         long duration = timer.stop();
 
-        System.out.printf("HeapSort took: %d milliseconds\t memory usage: %d", duration, afterUsedMem-beforeUsedMem);
+        System.out.printf("HeapSort took: %d milliseconds", duration);
     }
 }

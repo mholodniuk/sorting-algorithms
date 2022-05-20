@@ -79,23 +79,27 @@ public class Movie implements Comparable<Movie> {
                "\nRating: " + this.rating;
     }
 
-    public static void calculateAddingTime() {
-        Timer timer = new Timer(Timer.Precision.MILLISECONDS);
-        int sizes[] = {10000, 50000, 100000, 500000, 800000, 1000000};
-
-        for(int size: sizes) {
-            timer.start();
-            ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", size);
-            long duration = timer.stop();
-            System.out.printf("Redaing file of size %d took: %d milliseconds\n", size, duration);   
-        }
-    }
-
     public static void calculateAverageRating() {
         int sizes[] = {10000, 50000, 100000, 500000, 800000, 1000000};
 
         for(int size: sizes) {
             ArrayList<Movie> movies = Movie.readMoviesFromFile("src/main/resources/data.csv", size);
+        }
+    }
+
+    public static void calculateTimeOfAdding() {
+        int sizes[] = {10000, 50000, 100000, 500000, 800000, 1000000};
+        Timer timer = new Timer(Timer.Precision.NANOSECONDS);
+        ArrayList<Movie> movies = null;
+
+        for(int size: sizes) {
+            if(movies == null)
+                movies = Movie.readMoviesFromFile("src/main/resources/data.csv", size);
+            timer.start();
+            movies.add(new Movie("Film", 9.0));
+            long duration = timer.stop();
+            System.out.printf("Adding %d-th element from file took: %d nanoseconds\n", size, duration);
+            movies = null; 
         }
     }
 
@@ -138,7 +142,6 @@ public class Movie implements Comparable<Movie> {
     }
 
     public static void main(String[] args) {
-        // Movie.calculateMedianRating();
-        // Movie.readMoviesFromFile("src/main/resources/data.csv", 1000000);
+        Movie.calculateTimeOfAdding();
     }
 }
